@@ -4,6 +4,7 @@
 " ln -s ~/src/github.com/madhanganesh/vimconfig/bundle/ ~/.vim/bundle
 " git submodule add https://github.com/scrooloose/nerdtree.git bundle/nerdtree
 " git submodule init or git submodule update
+" brew install the_silver_searcher
 
 execute pathogen#infect()
 
@@ -61,6 +62,25 @@ let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_quiet_messages={"regex":"main redeclared"}
+let g:syntastic_html_tidy_ignore_errors = [
+    \"'<' + '/' + letter not allowed here"
+    \ ]
+
+" prettier settings
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql PrettierAsync
 
 function! CHANGE_CURR_DIR() 
     let _dir = expand("%:p:h") 
