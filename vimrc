@@ -28,6 +28,8 @@ set wildmenu
 set lazyredraw
 set incsearch 
 set hlsearch
+hi Todo gui=Bold,Underline
+hi FIXME gui=Bold,Underline
 
 set foldenable
 set foldlevelstart=10
@@ -64,11 +66,11 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
@@ -96,7 +98,17 @@ set wildignore+=*\\node_modules\\**
 
 " prettier settings
 let g:prettier#autoformat = 0
+" none|es5|all
+let g:prettier#config#trailing_comma = 'none'
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql PrettierAsync
+
+" YCM settings
+set completeopt-=preview
+"set completeopt-=menu
+"set completeopt+=menuone
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 function! CHANGE_CURR_DIR() 
     let _dir = expand("%:p:h") 
