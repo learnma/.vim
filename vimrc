@@ -12,7 +12,7 @@ filetype on
 syntax on
 filetype indent on
 colorscheme Tomorrow
-set guifont=Menlo\ Regular:h14
+set guifont=Monaco\ Regular:h12
 set lines=35 columns=80
 set number
 set hidden
@@ -100,6 +100,8 @@ set wildignore+=*\\node_modules\\**
 let g:prettier#autoformat = 0
 " none|es5|all
 let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#bracket_spacing = 'true'
+
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql PrettierAsync
 
 " YCM settings
