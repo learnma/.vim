@@ -1,0 +1,19 @@
+{
+    "diagnostic.displayByAle":true,
+    "diagnostic.locationlist": false,
+    "coc.preferences.previewAutoClose":true,
+    "list.maxPreviewHeight": 0,
+    "list.maxHeight": 0,
+    "list.autoResize":true,
+    "suggest.snippetIndicator": "",
+    "suggest.detailMaxLength": 0,
+  "suggest.noselect": false,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  }
+}
+

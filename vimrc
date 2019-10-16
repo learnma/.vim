@@ -53,10 +53,10 @@ set completeopt=longest,menuone
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent
@@ -67,6 +67,28 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 set fillchars=fold:\ 
 hi Folded guibg=NONE ctermbg=NONE
 
+let mapleader = ","
+noremap <Leader>c :ccl <bar> lcl<CR>
+map <leader>, :GoRun<CR>                                                   
+let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
+
+au FileType go nmap <leader>d :GoDeclsDir<cr>
+au Filetype go nmap <leader>a <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>ah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>av <Plug>(go-alternate-vertical)
+
+au FileType go nmap <F10> :GoTest -short<cr>
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+
+let g:go_auto_type_info = 1
+
+au FileType go nmap <F12> <Plug>(go-def)
+let g:go_addtags_transform = "snakecase"
+
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -76,10 +98,10 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 
 " Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -89,7 +111,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-master branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -105,14 +127,16 @@ Plug 'junegunn/fzf.vim'
 " Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
 
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 " Use release branch
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Or latest tag
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " Or build from source code by use yarn: https://yarnpkg.com
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'sebdah/vim-delve'
 
 " Initialize plugin system
 call plug#end()
