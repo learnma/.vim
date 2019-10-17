@@ -63,13 +63,18 @@ set completeopt=longest,menuone
 "  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 "augroup END
 
-"set foldmethod=indent
+set foldenable
+set foldmethod=indent
+set foldnestmax=1
+set foldtext=''
+set foldcolumn=1
 set fillchars=fold:\ 
-hi Folded guibg=NONE ctermbg=NONE
+hi Folded guibg=#ffffff
+nmap <leader>, zo
+nmap <leader>. zc
 
 let mapleader = ","
-noremap <Leader>c :ccl <bar> lcl<CR>
-map <leader>, :GoRun<CR>                                                   
+noremap <Leader>cc :ccl <bar> lcl<CR>
 let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
 let g:ale_sign_error = '⤫'
@@ -136,7 +141,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Or build from source code by use yarn: https://yarnpkg.com
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'sebdah/vim-delve'
+"Plug 'sebdah/vim-delve'
 
 " Initialize plugin system
 call plug#end()
